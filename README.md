@@ -1,34 +1,35 @@
 <div dir="rtl">
 
-# اسکیل و قانون فارسی RTL برای Google Antigravity
+# 🇮🇷 قوانین فارسی و راست‌چین برای هوش مصنوعی
+### Persian & RTL Rules for AI Coding Assistants
 
-این مخزن شامل یک **Skill** و یک **Rule** اختصاصی برای دستیار هوش مصنوعی **Google Antigravity** است که نوشتار فارسی را به صورت استاندارد راست‌به‌چپ (RTL) اجباری می‌کند.
-
----
-
-## مشکلی که این پکیج حل می‌کند
-
-وقتی با دستیار Antigravity به فارسی کار می‌کنید، متن‌ها به‌صورت پیش‌فرض از **چپ** شروع می‌شوند و کلمات انگلیسی وسط جمله فارسی قرار می‌گیرند — که خوانایی را خراب می‌کند.
-
-با نصب این پکیج:
-
-✅ تمام پاسخ‌های فارسی از سمت **راست** شروع می‌شوند  
-✅ کلمات انگلیسی در **خط جداگانه** نوشته می‌شوند  
-✅ قالب‌بندی در **تمام پروژه‌ها** به‌صورت خودکار اعمال می‌شود
+یک پکیج استاندارد و سبک برای تبدیل خروجی دستیارهای هوش مصنوعی و مدل‌های زبانی (LLMs) به زبان فارسی کاملاً **راست‌چین (RTL)**، خوانا، و با رعایت اصول ترکیب متن فارسی و واژگان انگلیسی یا فنی.
 
 ---
 
-## ساختار مخزن
+## 🎯 مشکلی که این پکیج حل می‌کند
+
+بیشتر دستیارهای کدنویسی هوش مصنوعی به‌صورت پیش‌فرض متن‌ها را در جهت چپ‌به‌راست (LTR) نمایش می‌دهند. زمانی که مدل کلمات انگلیسی (نام توابع، پکیج‌ها، مسیر فایل‌ها و دستورات) را در میان متن فارسی قرار می‌دهد، ترتیب کلمات به هم می‌ریزد و متن ناخوانا می‌شود.
+
+این قوانین و پرامپت‌ها مدل هوش مصنوعی را ملزم می‌کنند تا:
+
+*   ✨ خروجی‌های فارسی را با ساختار کاملاً راست‌چین و درون تگ استاندارد `<div dir="rtl">` رندر کند.
+*   📐 تمام کلمات، اصطلاحات، مسیرها و دستورات انگلیسی را در **سطرهای جداگانه** قرار دهد تا چیدمان متن هرگز دچار آشفتگی نشود.
+*   🔢 ارقام ترتیبی و متن‌های عادی را با اعداد فارسی بنویسد.
+
+---
+
+## 📁 ساختار مخزن
 
 </div>
 
 ```
 antigravity-persian-rtl/
+├── rules/
+│   └── language.md       # دستورالعمل مستقیم و بهینه برای Rule انواع هوش مصنوعی
 ├── skills/
 │   └── language/
-│       └── SKILL.md       ← اسکیل زبان (جزئیات کامل)
-├── rules/
-│   └── language.md        ← قانون ایجنت زبان (always-on)
+│       └── SKILL.md      # اسکیل جامع با مثال‌های قبل/بعد و الگوهای پیشرفته
 └── README.md
 ```
 
@@ -36,128 +37,89 @@ antigravity-persian-rtl/
 
 ---
 
-## نصب
+## 🚀 راهنمای نصب و استفاده در ابزارهای مختلف
 
-### مرحله ۱ — کپی فایل‌ها به مسیر گلوبال Antigravity
+می‌توانید از این قوانین در تمام ابزارها و دستیارهای معروف استفاده کنید:
 
-**فایل Skill:**
+### ۱. 💻 Cursor
+برای اعمال قوانین در ادیتور محبوب **Cursor**، یکی از دو روش زیر را انتخاب کنید:
+*   **روش اول:** محتوای فایل `rules/language.md` را کپی کرده و در ریشه پروژه خود در فایلی به نام `.cursorrules` ذخیره کنید.
+*   **روش دوم (جدید):** فایل `rules/language.md` را درون پوشه `.cursor/rules/persian-rtl.md` در پروژه خود قرار دهید.
 
-فایل
-`skills/language/SKILL.md`
-را به این مسیر کپی کنید:
+---
 
-</div>
-
-```
-C:\Users\<YourUsername>\.gemini\config\skills\language\SKILL.md
-```
-
-<div dir="rtl">
-
-**فایل Rule:**
-
-فایل
-`rules/language.md`
-را به این مسیر کپی کنید:
+### ۲. 🤖 Claude Code
+برای اعمال دائمی و سراسری در **Claude Code**:
+*   فایل `rules/language.md` را در مسیر رولز گلوبال کلود کپی کنید:
 
 </div>
 
-```
-C:\Users\<YourUsername>\.gemini\config\rules\language.md
-```
-
-<div dir="rtl">
-
-### مرحله ۲ — ساخت پوشه‌ها (اگر وجود ندارند)
-
-در
-`PowerShell`
-این دستورات را اجرا کنید:
-
-</div>
-
-```powershell
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.gemini\config\skills\language"
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.gemini\config\rules"
-```
-
-<div dir="rtl">
-
-### مرحله ۳ — کپی خودکار با PowerShell
-
-می‌توانید این دستورات را یکجا اجرا کنید:
-
-</div>
-
-```powershell
-# کلون کردن مخزن
-git clone https://github.com/MMDALIROX/antigravity-persian-rtl.git
-cd antigravity-persian-rtl
-
-# ساخت پوشه‌های مقصد
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.gemini\config\skills\language"
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.gemini\config\rules"
-
-# کپی فایل‌ها
-Copy-Item "skills\language\SKILL.md" "$env:USERPROFILE\.gemini\config\skills\language\SKILL.md" -Force
-Copy-Item "rules\language.md" "$env:USERPROFILE\.gemini\config\rules\language.md" -Force
-
-Write-Host "نصب با موفقیت انجام شد!"
-```
+*   **ویندوز:** `%USERPROFILE%\.claude\rules\language.md`
+*   **مک و لینوکس:** `~/.claude/rules/language.md`
 
 <div dir="rtl">
 
 ---
 
-## نتیجه بعد از نصب
+### ۳. 🌌 Google Antigravity
+برای فعال‌سازی در **Google Antigravity** به دو صورت گلوبال یا مخصوص پروژه:
+*   فایل `rules/language.md` را به مسیر زیر منتقل کنید:
 
-پاسخ‌های دستیار به این شکل خواهند بود:
+</div>
+
+*   **ویندوز:** `C:\Users\<Username>\.gemini\config\rules\language.md`
+*   **مک و لینوکس:** `~/.gemini/config/rules/language.md`
+
+<div dir="rtl">
+
+*   همچنین برای استفاده به‌عنوان **Skill**، پوشه `skills/language/` را در مسیر `~/.gemini/config/skills/` قرار دهید.
+
+---
+
+### ۴. 🐙 GitHub Copilot
+برای تنظیم در **GitHub Copilot**:
+1. در محیط **VS Code** به بخش `Settings` بروید.
+2. عبارت `github.copilot.chat.customInstructions` را جستجو کنید.
+3. یا در پوشه `.github/` پروژه، فایلی به نام `copilot-instructions.md` بسازید و محتوای فایل `rules/language.md` را در آن قرار دهید.
+
+---
+
+### ۵. 🌐 سایر دستیارها (ChatGPT, Claude.ai, LibreChat و...)
+متن موجود در فایل `rules/language.md` را کپی کرده و در بخش **Custom Instructions** یا **System Prompt** ابزار مورد نظر خود قرار دهید.
+
+---
+
+## 🔍 نمونه تفاوت خروجی
+
+### ❌ قبل از اعمال قوانین (آشفته و ناخوانا):
+> من الان سایتت رو روی Cloudflare اپلود کردم و زمان run کردن سایته !
+
+### ✅ بعد از اعمال قوانین (راست‌چین و چشم‌نواز):
 
 </div>
 
 ```html
 <div dir="rtl">
 
-پروژه‌ات رو روی
+من الان سایتت رو روی
 Cloudflare
-دیپلوی کردم و دستور
-npm run build
-رو اجرا کردم.
+آپلود کردم و زمان
+run
+کردن سایته!
 
 </div>
 ```
 
 <div dir="rtl">
 
-به جای این شکل غلط:
+---
 
-</div>
-
-```
-پروژه‌ات رو روی Cloudflare دیپلوی کردم و دستور npm run build رو اجرا کردم.
-```
-
-<div dir="rtl">
+## 🤝 مشارکت
+پیشنهادها، بهبودها و گزارش‌های خود را از طریق **Issues** یا ارسال **Pull Request** با ما در میان بگذارید.
 
 ---
 
-## سازگاری
-
-| سیستم‌عامل | مسیر گلوبال |
-|------------|-------------|
-| ویندوز | `C:\Users\<Username>\.gemini\config\` |
-| مک / لینوکس | `~/.gemini/config/` |
-
----
-
-## مجوز
-
-این پروژه تحت مجوز
-`MIT`
-منتشر شده است. آزادانه استفاده و توسعه دهید.
-
----
-
-ساخته‌شده برای بهبود تجربه کار با **Google Antigravity** به زبان فارسی 🇮🇷
+## 📄 مجوز
+این پروژه تحت مجوز **MIT** منتشر شده و استفاده از آن برای همه آزاد و رایگان است.
 
 </div>
